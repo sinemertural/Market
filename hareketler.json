@@ -1,0 +1,51 @@
+{
+    "hareketler": [
+        {
+            "id": 1,
+            "tarih": "2024-03-18",
+            "aciklama": "Satış Geliri",
+            "tutar": 1000.5,
+            "hareket_tipi": "gelir"
+        },
+        {
+            "id": 3,
+            "tarih": "2024-03-19",
+            "aciklama": "Danışmanlık Geliri",
+            "tutar": 2500,
+            "hareket_tipi": "gelir"
+        },
+        {
+            "id": 4,
+            "tarih": "2024-03-19",
+            "aciklama": "Elektrik Faturası",
+            "tutar": 250.25,
+            "hareket_tipi": "gider"
+        },
+        {
+            "id": 5,
+            "tarih": "2025-03-18",
+            "aciklama": "Örnek hareket",
+            "tutar": 1000,
+            "hareket_tipi": "gelir"
+        },
+        {
+            "id": 6,
+            "tarih": "2025-03-18",
+            "aciklama": "Örnek hareket",
+            "tutar": 1000,
+            "hareket_tipi": "gelir"
+        },
+        {
+            "id": 7,
+            "tarih": "2025-03-18",
+            "aciklama": "Örnek hareket",
+            "tutar": 1000,
+            "hareket_tipi": "gelir"
+        }
+    ],
+    "mali_durum": {
+        "toplam_gelir": 6500.5,
+        "toplam_gider": 250.25,
+        "net_kar": 6250.25
+    }
+}
