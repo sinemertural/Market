@@ -10,14 +10,14 @@ import (
 )
 
 func main() {
-	// JSON Repository oluştur
+	// JSON Service oluştur
 	repo, err := service.NewJsonService("hareketler.json")
 	if err != nil {
 		log.Fatalf("Repository oluşturulurken hata: %v", err)
 	}
 
-	// Presenter oluştur
-	hareketPresenter := handler.NewHareketPresenter(repo)
+	// Handler oluştur
+	hareketHandler := handler.NewHareketHandler(repo)
 
 	// Fiber uygulamasını oluştur
 	app := fiber.New(fiber.Config{
@@ -32,13 +32,13 @@ func main() {
 
 	// Mali hareket rotaları
 	hareketler := api.Group("/hareketler")
-	hareketler.Get("/", hareketPresenter.GetHareketler)
-	hareketler.Get("/:id", hareketPresenter.GetHareket)
-	hareketler.Post("/", hareketPresenter.CreateHareket)
-	hareketler.Delete("/:id", hareketPresenter.DeleteHareket)
+	hareketler.Get("/", hareketHandler.GetHareketler)
+	hareketler.Get("/:id", hareketHandler.GetHareket)
+	hareketler.Post("/", hareketHandler.CreateHareket)
+	hareketler.Delete("/:id", hareketHandler.DeleteHareket)
 
 	// Mali durum rotası
-	api.Get("/mali-durum", hareketPresenter.GetMaliDurum)
+	api.Get("/mali-durum", hareketHandler.GetMaliDurum)
 
 	// Sunucuyu başlat
 	log.Printf("Sunucu http://localhost:8080 adresinde başlatılıyor...")

@@ -8,21 +8,21 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-type HareketPresenter struct {
+type HareketHandler struct {
 	repo model.HareketRepository
 }
 
-func NewHareketPresenter(repo model.HareketRepository) *HareketPresenter {
-	return &HareketPresenter{repo: repo}
+func NewHareketHandler(repo model.HareketRepository) *HareketHandler {
+	return &HareketHandler{repo: repo}
 }
 
-func (p *HareketPresenter) GetHareketler(c *fiber.Ctx) error {
+func (p *HareketHandler) GetHareketler(c *fiber.Ctx) error {
 	hareketler := p.repo.GetAll()
 	fmt.Println("db: ", hareketler)
 	return c.JSON(hareketler)
 }
 
-func (p *HareketPresenter) GetHareket(c *fiber.Ctx) error {
+func (p *HareketHandler) GetHareket(c *fiber.Ctx) error {
 	id, err := strconv.Atoi(c.Params("id"))
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
@@ -40,7 +40,7 @@ func (p *HareketPresenter) GetHareket(c *fiber.Ctx) error {
 	return c.JSON(hareket)
 }
 
-func (p *HareketPresenter) CreateHareket(c *fiber.Ctx) error {
+func (p *HareketHandler) CreateHareket(c *fiber.Ctx) error {
 	hareket := new(model.Hareket)
 	if err := c.BodyParser(hareket); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
@@ -63,7 +63,7 @@ func (p *HareketPresenter) CreateHareket(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusCreated).JSON(hareket)
 }
 
-func (p *HareketPresenter) DeleteHareket(c *fiber.Ctx) error {
+func (p *HareketHandler) DeleteHareket(c *fiber.Ctx) error {
 	id, err := strconv.Atoi(c.Params("id"))
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
@@ -80,7 +80,7 @@ func (p *HareketPresenter) DeleteHareket(c *fiber.Ctx) error {
 	return c.SendStatus(fiber.StatusNoContent)
 }
 
-func (p *HareketPresenter) GetMaliDurum(c *fiber.Ctx) error {
+func (p *HareketHandler) GetMaliDurum(c *fiber.Ctx) error {
 	maliDurum := p.repo.GetMaliDurum()
 	return c.JSON(maliDurum)
 }
